@@ -1,0 +1,2 @@
+# ToDo
+Practice with CoreData
