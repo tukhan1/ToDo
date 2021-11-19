@@ -16,7 +16,7 @@ class CategoryViewController: SwipeTableViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-
+        
         tableView.reloadData()
 
     }
@@ -24,6 +24,7 @@ class CategoryViewController: SwipeTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         loadCategories()
     }
@@ -37,8 +38,8 @@ class CategoryViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Catigories added yet"
+        cell.backgroundColor = UIColor(hexString: categories?[indexPath.row].backgroundColor ?? "FFF3E4")?.withAlphaComponent(0.1)
         
         return cell
     }
@@ -71,6 +72,7 @@ class CategoryViewController: SwipeTableViewController {
             if let text = textField.text {
                 let newCategory = Category()
                 newCategory.name = text.capitalized
+                newCategory.backgroundColor = UIColor.randomFlat().hexValue()
                 
                 self.save(category: newCategory)
             }

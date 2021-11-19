@@ -18,10 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+
+            appearance.backgroundColor = UIColor(hexString: "FFB085")?.withAlphaComponent(0.2)
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        }
+        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         let config = Realm.Configuration(
-            schemaVersion: 4,
+            schemaVersion: 5,
 
 
             migrationBlock: { migration, oldSchemaVersion in
