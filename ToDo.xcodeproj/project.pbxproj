@@ -16,10 +16,9 @@
 		DC35994C272317A6006016DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC35994A272317A6006016DE /* LaunchScreen.storyboard */; };
 		DC80F70B2730029E000DCE06 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80F70A2730029E000DCE06 /* K.swift */; };
 		DC80F734273974EB000DCE06 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80F733273974EB000DCE06 /* CategoryViewController.swift */; };
-		DC80F73C273DABF8000DCE06 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80F73A273DABF8000DCE06 /* CategoryCell.swift */; };
-		DC80F73D273DABF8000DCE06 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC80F73B273DABF8000DCE06 /* CategoryCell.xib */; };
 		DC9AF49A2742AD9900849985 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9AF4992742AD9900849985 /* Item.swift */; };
 		DC9AF49C2742ADA600849985 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9AF49B2742ADA600849985 /* Category.swift */; };
+		DC9AF49E2746B23D00849985 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9AF49D2746B23C00849985 /* SwipeTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,10 +33,9 @@
 		DC35994D272317A6006016DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC80F70A2730029E000DCE06 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		DC80F733273974EB000DCE06 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		DC80F73A273DABF8000DCE06 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
-		DC80F73B273DABF8000DCE06 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
 		DC9AF4992742AD9900849985 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		DC9AF49B2742ADA600849985 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		DC9AF49D2746B23C00849985 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		E41A46542CA43A570AF9E3D8 /* Pods-ToDo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo.release.xcconfig"; path = "Target Support Files/Pods-ToDo/Pods-ToDo.release.xcconfig"; sourceTree = "<group>"; };
 		FE864520E5A89FFBF1823E48 /* Pods_ToDo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -93,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				DC35993F272317A2006016DE /* AppDelegate.swift */,
-				DC80F739273D78BD000DCE06 /* Cells */,
 				DC644FC2272C423600E6C429 /* Model */,
 				DC644FC4272C425A00E6C429 /* View */,
 				DC644FC3272C424400E6C429 /* Controllers */,
@@ -120,6 +117,7 @@
 			children = (
 				DC80F733273974EB000DCE06 /* CategoryViewController.swift */,
 				DC359943272317A2006016DE /* TodoListViewController.swift */,
+				DC9AF49D2746B23C00849985 /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -130,15 +128,6 @@
 				DC359945272317A2006016DE /* Main.storyboard */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		DC80F739273D78BD000DCE06 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				DC80F73A273DABF8000DCE06 /* CategoryCell.swift */,
-				DC80F73B273DABF8000DCE06 /* CategoryCell.xib */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,7 +193,6 @@
 				DC35994C272317A6006016DE /* LaunchScreen.storyboard in Resources */,
 				DC359949272317A6006016DE /* Assets.xcassets in Resources */,
 				DC359947272317A2006016DE /* Main.storyboard in Resources */,
-				DC80F73D273DABF8000DCE06 /* CategoryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +247,8 @@
 			files = (
 				DC80F70B2730029E000DCE06 /* K.swift in Sources */,
 				DC359944272317A2006016DE /* TodoListViewController.swift in Sources */,
-				DC80F73C273DABF8000DCE06 /* CategoryCell.swift in Sources */,
 				DC9AF49A2742AD9900849985 /* Item.swift in Sources */,
+				DC9AF49E2746B23D00849985 /* SwipeTableViewController.swift in Sources */,
 				DC9AF49C2742ADA600849985 /* Category.swift in Sources */,
 				DC359940272317A2006016DE /* AppDelegate.swift in Sources */,
 				DC80F734273974EB000DCE06 /* CategoryViewController.swift in Sources */,

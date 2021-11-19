@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class CategoryViewController: UITableViewController {
+class CategoryViewController: SwipeTableViewController {
     
     let realm = try! Realm()
     
@@ -25,8 +25,6 @@ class CategoryViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UINib(nibName: "CategoryCell", bundle: nil), forCellReuseIdentifier: "CategoryCellId")
-        
         loadCategories()
     }
     
@@ -38,9 +36,9 @@ class CategoryViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.getIdentifier(), for: indexPath) as! CategoryCell
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        cell.categoryName.text = categories?[indexPath.row].name ?? "No Catigories added yet"
+        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Catigories added yet"
         
         return cell
     }
@@ -72,7 +70,7 @@ class CategoryViewController: UITableViewController {
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             if let text = textField.text {
                 let newCategory = Category()
-                newCategory.name = text
+                newCategory.name = text.capitalized
                 
                 self.save(category: newCategory)
             }
@@ -95,7 +93,7 @@ class CategoryViewController: UITableViewController {
                 realm.add(category)
             }
         } catch {
-            print("Saving error : \(error)")
+            print("Saving category error : \(error)")
         }
         
         tableView.reloadData()
@@ -106,5 +104,18 @@ class CategoryViewController: UITableViewController {
         categories = realm.objects(Category.self)
         
         tableView.reloadData()
+    }
+    
+    override func updateModel(at indexPath: IndexPath) {
+        
+        if let object = self.categories?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(object)
+                }
+            } catch {
+                print("Deleting category error \(error)")
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         let config = Realm.Configuration(
-            schemaVersion: 2,
+            schemaVersion: 4,
 
 
             migrationBlock: { migration, oldSchemaVersion in

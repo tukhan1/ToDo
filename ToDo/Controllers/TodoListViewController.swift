@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class TodoListViewController: UITableViewController {
+class TodoListViewController: SwipeTableViewController {
     
     let k = K()
     
@@ -31,6 +31,8 @@ class TodoListViewController: UITableViewController {
     
     //MARK: - Tableview Datasource Methods
     
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoItems?.count ?? 1
     }
@@ -38,7 +40,7 @@ class TodoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: k.cellIdetifire, for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         if let item = todoItems?[indexPath.row] {
             
@@ -92,16 +94,16 @@ class TodoListViewController: UITableViewController {
         let action = UIAlertAction(title: k.alertActionTitle, style: .default) { (action) in
             
             if let currentCategory = self.selectedCategory {
-                
-                do {
-                    try self.realm.write {
-                        let newItem = Item()
-                        newItem.title = textField.text!
-                        print(newItem)
-                        currentCategory.items.append(newItem)
+                if let text = textField.text {
+                    do {
+                        try self.realm.write {
+                            let newItem = Item()
+                            newItem.title = text.capitalized
+                            currentCategory.items.append(newItem)
+                        }
+                    } catch {
+                        print("Error saving new item : \(error)")
                     }
-                } catch {
-                    print("Error saving new item : \(error)")
                 }
             }
             
@@ -127,11 +129,21 @@ class TodoListViewController: UITableViewController {
     
     func loadItems() {
         
-        
         todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
-        
         tableView.reloadData()
+    }
+    
+    override func updateModel(at indexPath: IndexPath) {
         
+        if let object = self.todoItems?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(object)
+                }
+            } catch {
+                print("Deleting item error : \(error)")
+            }
+        }
     }
 }
 
