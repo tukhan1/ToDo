@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class CategoryViewController: SwipeTableViewController {
     
@@ -17,14 +18,20 @@ class CategoryViewController: SwipeTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        let logo = UIImage(named: "logo.png")
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = logo
+        self.navigationItem.titleView = imageView
+        
         tableView.reloadData()
-
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.tintColor = .darkGray
         
         loadCategories()
     }
@@ -39,7 +46,11 @@ class CategoryViewController: SwipeTableViewController {
         
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Catigories added yet"
-        cell.backgroundColor = UIColor(hexString: categories?[indexPath.row].backgroundColor ?? "FFF3E4")?.withAlphaComponent(0.1)
+        
+        if let color = categories?[indexPath.row].backgroundColor {
+            cell.textLabel?.textColor = ContrastColorOf(UIColor(hexString: color)!, returnFlat: true)
+            cell.backgroundColor = UIColor(hexString: color)
+        }
         
         return cell
     }

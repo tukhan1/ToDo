@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class TodoListViewController: SwipeTableViewController {
     
@@ -22,10 +23,14 @@ class TodoListViewController: SwipeTableViewController {
         }
     }
     
+    @IBOutlet weak var searchBar: UISearchBar!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        if let colorHex = selectedCategory?.backgroundColor {
+            applyNavigationAndSearchBarTintWith(color: UIColor(hexString: colorHex)!)
+        }
     }
     
     
@@ -45,6 +50,11 @@ class TodoListViewController: SwipeTableViewController {
         if let item = todoItems?[indexPath.row] {
             
             cell.textLabel?.text = item.title
+            
+            if let color = UIColor(hexString: selectedCategory!.backgroundColor)?.darken(byPercentage:CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+                cell.backgroundColor = color
+                cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+            }
             
             cell.accessoryType = item.done ? .checkmark : .none
         } else {
@@ -144,6 +154,26 @@ class TodoListViewController: SwipeTableViewController {
                 print("Deleting item error : \(error)")
             }
         }
+    }
+    
+    //MARK: - Navigation & Search Bar appearance
+    
+    func applyNavigationAndSearchBarTintWith(color: UIColor) {
+        
+        navigationItem.title = selectedCategory?.name
+        
+        searchBar.barTintColor = color
+        searchBar.searchTextField.backgroundColor = .white
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = color
+        appearance.titleTextAttributes = [.foregroundColor: ContrastColorOf(color, returnFlat: true)]
+        
+        guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller does not exist.")}
+        navBar.standardAppearance = appearance
+        navBar.scrollEdgeAppearance = appearance
+        navBar.tintColor = ContrastColorOf(color, returnFlat: true)
     }
 }
 

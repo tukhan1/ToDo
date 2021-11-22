@@ -7,12 +7,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ToDo-->
+        <!--Indie ToDo-->
         <scene sceneID="iQg-sX-zoR">
             <objects>
                 <tableViewController id="Qz0-9C-GhG" customClass="CategoryViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="y31-sd-QC4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -30,7 +30,7 @@
                             <outlet property="delegate" destination="Qz0-9C-GhG" id="Xmp-dN-dRM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="ToDo" id="NJW-kI-A0Y">
+                    <navigationItem key="navigationItem" title="Indie ToDo" id="NJW-kI-A0Y">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lZf-W2-ZWr">
                             <connections>
                                 <action selector="addButtonPressed:" destination="Qz0-9C-GhG" id="QG0-yP-pUB"/>
@@ -45,12 +45,12 @@
             </objects>
             <point key="canvasLocation" x="917.39130434782612" y="68.973214285714278"/>
         </scene>
-        <!--Items-->
+        <!--Todo List View Controller-->
         <scene sceneID="eFc-1M-DXg">
             <objects>
                 <tableViewController id="HQt-aC-ASi" customClass="TodoListViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="8l5-J0-DVD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="aik-vf-DDb">
@@ -76,13 +76,16 @@
                             <outlet property="delegate" destination="HQt-aC-ASi" id="bdR-A9-UN5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Items" id="UeN-1I-2Ma">
+                    <navigationItem key="navigationItem" id="UeN-1I-2Ma">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2wB-Uw-stZ">
                             <connections>
                                 <action selector="addPressed:" destination="HQt-aC-ASi" id="oqm-30-hlU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="aik-vf-DDb" id="ez3-o2-A2D"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B4a-BA-q9l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -94,14 +97,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HZA-sU-UKf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="BQq-3D-B6e">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BQq-3D-B6e">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <navigationBarAppearance key="compactAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
